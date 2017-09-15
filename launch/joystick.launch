@@ -1,0 +1,72 @@
+<launch>
+    <!-- joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="joy" output="screen">    
+  	<param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+	<node name="PlannerNode" pkg="rl_nav" type="PlannerNode.py" output="screen" required="true">
+		<!-- <param name="map" type="int" value="1" /> -->
+		<!-- <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel" /> -->
+	</node>
+
+	<node name="rl_nav" pkg="rl_nav" type="rl_nav" output="screen" required="true">
+		<param name="predictor" type="string" value="RL" />
+		<param name="qThresh" type="double" value="-0.2" />	
+		<param name="vel_scale" type="double" value="0.9" />	
+		<param name="num_actions" type="int" value="14" />
+		
+		<!-- <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel" /> -->
+		<!-- map 1 -->
+		<!-- <param name="mode" type="string" value="MAP" />	
+		<param name="init_x" type="double" value="2.6" />
+		<param name="init_y" type="double" value="2.6" />
+		<param name="init_Y" type="double" value="1.0472" /> 
+		<param name="map" type="int" value="1" /> -->
+
+		
+		<!-- map 2 -->
+		<!-- <param name="mode" type="string" value="MAP" />
+		<param name="init_x" type="double" value="1.22755896" />
+		<param name="init_y" type="double" value="1.76695301" />
+		<param name="init_Y" type="double" value="1.282365" />
+		<param name="map" type="int" value="2" /> -->
+
+		<!-- map 3 -->
+<!-- 		<param name="mode" type="string" value="MAP" />
+		<param name="init_x" type="double" value="2" />
+		<param name="init_y" type="double" value="2" />
+		<param name="init_Y" type="double" value="-0.7" />
+		<param name="map" type="int" value="3" />
+ -->
+		<!-- corridor map -->
+		<!-- <param name="mode" type="string" value="MAP" />
+		<param name="init_x" type="double" value="-3" />
+		<param name="init_y" type="double" value="-1.81" />
+		<param name="init_Y" type="double" value="1.282365" />
+		<param name="map" type="int" value="4" /> -->
+
+		<!-- training map -->
+		<param name="init_x" type="double" value="-1" />
+		<param name="init_y" type="double" value="1" />
+		<param name="init_Y" type="double" value="0.4" />
+		<param name="map" type="int" value="-1" />
+		
+
+		 <!-- rooms map -->
+<!-- 		<param name="mode" type="string" value="MAP" />	
+		<param name="init_x" type="double" value="2.6" />
+		<param name="init_y" type="double" value="2.6" />
+		<param name="init_Y" type="double" value="1.0472" /> 
+		<param name="map" type="int" value="5" />
+ -->
+
+	</node>
+
+
+<!-- 	<node name="pointcloud_to_laserscan" pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" clear_params="true" respawn="true">
+	    <remap from="cloud_in" to="/vslam/pc2" />
+    </node>
+ -->	
+	
+</launch>

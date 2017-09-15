@@ -1,0 +1,10 @@
+<launch>
+
+	<node name="bag_reader" pkg="rl_nav" type="bag_reader" output="screen" respawn="true">
+		<param name="map" type="int" value="0" />
+		<param name="num_actions" type="int" value="14" />
+	</node>
+
+	
+	
+</launch>
